@@ -1,0 +1,62 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+
+export default function Dashboard() {
+  const [igToken, setIgToken] = useState("");
+
+  return (
+    <div className="min-h-screen bg-zinc-900 text-white p-4">
+      <h1 className="text-3xl font-bold mb-6">📊 Instagram Client Dashboard</h1>
+
+      <Tabs defaultValue="login" className="w-full">
+        <TabsList className="bg-zinc-800">
+          <TabsTrigger value="login">Instagram Login</TabsTrigger>
+          <TabsTrigger value="planner">Content Planner</TabsTrigger>
+          <TabsTrigger value="scripts">Response Scripts</TabsTrigger>
+          <TabsTrigger value="messages">Messages</TabsTrigger>
+        </TabsList>
+
+        <TabsContent value="login">
+          <Card className="bg-zinc-800">
+            <CardContent className="p-4">
+              <p className="mb-4">Login with your Instagram Business Account to begin.</p>
+              <Button variant="default" onClick={() => alert("Redirecting to Instagram OAuth...")}>Login with Instagram</Button>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="planner">
+          <Card className="bg-zinc-800">
+            <CardContent className="p-4">
+              <p className="mb-2">Connect Google Sheet for planning content:</p>
+              <Input placeholder="Paste your Google Sheet link here..." className="mb-2" />
+              <Button>Connect Sheet</Button>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="scripts">
+          <Card className="bg-zinc-800">
+            <CardContent className="p-4">
+              <p className="mb-2">Paste your Google Docs link (for prewritten scripts):</p>
+              <Input placeholder="https://docs.google.com/..." className="mb-2" />
+              <Button>Load Scripts</Button>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="messages">
+          <Card className="bg-zinc-800">
+            <CardContent className="p-4">
+              <p className="mb-2">Instagram DMs (basic preview)</p>
+              <p className="text-sm text-zinc-400">(Coming soon: View & reply to DMs)</p>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+}
